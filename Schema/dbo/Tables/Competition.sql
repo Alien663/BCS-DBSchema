@@ -5,8 +5,12 @@
     [Name]        NVARCHAR (128) NULL,
     [Description] NVARCHAR (MAX) NULL,
     [nLevel]      TINYINT        NULL,
+    [Since]       DATETIME       DEFAULT (getdate()) NULL,
+    [UPDDate]     DATETIME       DEFAULT (getdate()) NULL,
     CONSTRAINT [PK_Competition] PRIMARY KEY CLUSTERED ([CID] ASC),
     CONSTRAINT [FK_Competition_CCID] FOREIGN KEY ([CCID]) REFERENCES [dbo].[Competition] ([CID]),
     CONSTRAINT [FK_Competition_Organizer] FOREIGN KEY ([Organizer]) REFERENCES [dbo].[Person] ([PID])
 );
+
+
 

@@ -1,11 +1,16 @@
-﻿create view vd_Competition as
+﻿
+
+CREATE view [dbo].[vd_Competition] as
 select 
-	P.[Name] as [CupName],
-	P.[Description] as [Description],
-	P.Organizer,
 	C.CID,
+	C.CCID as [ParentID],
+	P.[Name] as [Organizer],
 	C.[Name] as [CompetitionItem],
 	C.[Description] as [ItemDescription],
-	C.nLevel
-from Competition P
-	inner join Competition C on P.CID = C.CCID
+	C.nLevel,
+	A.AID,
+	A.[Path] + A.[Name] + '.' + A.Extend as [FileName]
+from Competition C
+	inner join Person P on C.Organizer = P.PID
+	left join CompetitionArchive CA on C.CID = CA.CID
+	left join Archive A on CA.AID = A.AID

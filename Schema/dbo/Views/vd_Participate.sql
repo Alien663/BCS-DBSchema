@@ -1,13 +1,10 @@
-﻿
-CREATE view [dbo].[vd_Participate] as
-select C.CID, C.[Name] as [Category], P.PID, P.Sex, P.[Name] as [Player],
-	FLOOR(DATEDIFF(DY, P.Birth ,GETDATE())/365.25) as Age,
-	CP.[State],
-	case CP.[State]
+﻿create   view vd_Participate as
+select C.*, T.TID, T.[Name] as [TeamName], T.[Description] as [TeamDesc],
+	T.[State],
+	case T.[State]
 		when 0 then '未繳費'
 		when 1 then '已繳費'
 		else ''
 	end as [Status]
-from Competition C
-	inner join Participate CP on C.CID = CP.CID
-	inner join Person P on CP.PID = P.PID
+from vd_Competition C
+	inner join Team T on C.ChildID = T.CID

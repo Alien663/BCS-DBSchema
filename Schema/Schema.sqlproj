@@ -77,5 +77,6 @@
     <Build Include="dbo\Stored Procedures\xp_CompetitionUpdate.sql" />
     <Build Include="dbo\Stored Procedures\xp_CompetitionInsert.sql" />
     <Build Include="dbo\Stored Procedures\xp_CompetitionDelete.sql" />
+    <Build Include="dbo\Tables\Team.sql" />
   </ItemGroup>
 </Project>
